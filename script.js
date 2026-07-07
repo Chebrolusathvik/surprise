@@ -34,6 +34,7 @@ const giftNote = document.getElementById("gift-note");
 const giftContinueBtn = document.getElementById("gift-continue-btn");
 const expressionSection = document.getElementById("expression-section");
 const expressionContinueBtn = document.getElementById("expression-continue-btn");
+const codeWordLine = document.getElementById("code-word-line");
 const finalQuestionSection = document.getElementById("final-question-section");
 const yesBtn = document.getElementById("yes-btn");
 const noBtn = document.getElementById("no-btn");
@@ -476,15 +477,26 @@ if (giftContinueBtn && giftOverlay && expressionSection && finalQuestionSection)
     if (expressionContinueBtn) {
       hide(expressionContinueBtn);
     }
+    if (codeWordLine) {
+      hide(codeWordLine);
+    }
     if (!hasTypedExpression) {
       typeExpressionLineByLine(170, () => {
+        if (codeWordLine) {
+          show(codeWordLine);
+        }
         if (expressionContinueBtn) {
           show(expressionContinueBtn);
         }
       });
       hasTypedExpression = true;
-    } else if (expressionContinueBtn) {
-      show(expressionContinueBtn);
+    } else {
+      if (codeWordLine) {
+        show(codeWordLine);
+      }
+      if (expressionContinueBtn) {
+        show(expressionContinueBtn);
+      }
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
   });

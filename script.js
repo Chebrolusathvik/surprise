@@ -141,7 +141,7 @@ function playBirthdayVoice() {
     return;
   }
 
-  const line = "Happiest birthday madam";
+  const line = "Happy birthday madam";
   let spoken = false;
 
   const pickVoice = () => {
@@ -149,10 +149,18 @@ function playBirthdayVoice() {
     if (!voices.length) {
       return null;
     }
-    const englishVoices = voices.filter((v) => v.lang && v.lang.toLowerCase().startsWith("en"));
-    const pool = englishVoices.length ? englishVoices : voices;
-    const alexVoice = pool.find((v) => (v.name || "").toLowerCase().includes("alex"));
-    return alexVoice || pool[0] || voices[0];
+    const exactGeetha = voices.find(
+      (v) => (v.name || "").toLowerCase() === "geetha" && (v.lang || "").toLowerCase() === "te-in",
+    );
+    if (exactGeetha) {
+      return exactGeetha;
+    }
+    const anyGeetha = voices.find((v) => (v.name || "").toLowerCase().includes("geetha"));
+    if (anyGeetha) {
+      return anyGeetha;
+    }
+    const teInVoice = voices.find((v) => (v.lang || "").toLowerCase() === "te-in");
+    return teInVoice || voices[0];
   };
 
   const speakNow = () => {
@@ -309,8 +317,35 @@ function moveNoButton() {
   const bounds = container.getBoundingClientRect();
   const maxX = Math.max(8, bounds.width - noBtn.offsetWidth - 8);
   const maxY = Math.max(8, bounds.height - noBtn.offsetHeight - 8);
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
+  const yesRect = yesBtn
+    ? {
+        x: yesBtn.offsetLeft,
+        y: yesBtn.offsetTop,
+        w: yesBtn.offsetWidth,
+        h: yesBtn.offsetHeight,
+      }
+    : null;
+
+  let randomX = 8;
+  let randomY = 8;
+  let attempts = 0;
+  while (attempts < 24) {
+    const candidateX = Math.floor(Math.random() * maxX);
+    const candidateY = Math.floor(Math.random() * maxY);
+    if (!yesRect) {
+      randomX = candidateX;
+      randomY = candidateY;
+      break;
+    }
+    const overlapX = candidateX < yesRect.x + yesRect.w && candidateX + noBtn.offsetWidth > yesRect.x;
+    const overlapY = candidateY < yesRect.y + yesRect.h && candidateY + noBtn.offsetHeight > yesRect.y;
+    if (!(overlapX && overlapY)) {
+      randomX = candidateX;
+      randomY = candidateY;
+      break;
+    }
+    attempts += 1;
+  }
 
   noBtn.style.position = "absolute";
   noBtn.style.left = `${randomX}px`;
@@ -438,9 +473,18 @@ if (giftContinueBtn && giftOverlay && expressionSection && finalQuestionSection)
     }
     show(expressionSection);
     hide(finalQuestionSection);
+    if (expressionContinueBtn) {
+      hide(expressionContinueBtn);
+    }
     if (!hasTypedExpression) {
-      typeExpressionLineByLine();
+      typeExpressionLineByLine(170, () => {
+        if (expressionContinueBtn) {
+          show(expressionContinueBtn);
+        }
+      });
       hasTypedExpression = true;
+    } else if (expressionContinueBtn) {
+      show(expressionContinueBtn);
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
   });

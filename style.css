@@ -413,6 +413,7 @@ body {
   cursor: pointer;
   font-weight: 600;
   font-family: inherit;
+  min-width: 92px;
 }
 
 #yes-btn {
@@ -443,6 +444,15 @@ body {
   font: inherit;
   resize: vertical;
 }
+
+#code-word-line{
+   margin-top: 10px;
+   padding: 8px 12px;
+   border-radius: 10px;
+   background: #fff1f8;
+   border: 1px solid #f0bfd8;
+   font-weight: 700;
+ }
 
 #comment-input:focus {
   outline: 2px solid #f4b9d8;
@@ -545,10 +555,14 @@ body {
 
   .question-actions {
     min-height: 115px;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 
   .question-actions button {
-    width: 100%;
+    width: auto;
+    min-width: 84px;
+    padding: 0.52rem 0.82rem;
   }
 
   .overlay-card {

@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Too Sreyaaa</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="bg-particles" aria-hidden="true"></div>
+    <main class="app-shell">
+      <section id="page-1" class="screen active">
+        <div class="card center">
+          <p class="tagline">From someone to their special one</p>
+          <button id="entry-envelope" class="envelope-btn locket-btn" aria-label="Open locket surprise">
+            <svg class="envelope-shape" viewBox="0 0 64 48" aria-hidden="true">
+              <rect x="4" y="6" width="56" height="36" rx="6" class="env-body"></rect>
+              <path d="M8 10 L32 28 L56 10" class="env-flap"></path>
+              <path d="M8 38 L24 24 M56 38 L40 24" class="env-line"></path>
+            </svg>
+            <span class="locket-text">To Sreyaaa</span>
+          </button>
+          <p class="instruction">Tap the envelope to open</p>
+        </div>
+      </section>
+
+      <section id="page-2" class="screen">
+        <div class="card">
+          <div id="tap-message-block" class="center">
+            <p class="instruction">Starting surprise in...</p>
+            <p id="countdown-text" class="heading">5</p>
+          </div>
+
+          <div id="birthday-content" class="hidden">
+            <div id="pre-gift-stage">
+              <h1 class="heading">Happy Birthday to my Philips madam.</h1>
+
+              <div id="candle-stage" class="center">
+                <button id="candle-trigger" class="candle-trigger" aria-label="Tap candles to continue">
+                  <img id="cake-image" src="assets/cake_with_candles.png" alt="Cake with candles" />
+                </button>
+                <p id="tap-candle-instruction" class="instruction hidden">Tap on the image</p>
+              </div>
+
+              <div id="post-candle-section" class="hidden">
+                <div class="image-row">
+                  <img id="ghibli-image" src="assets/cake_cutting.png" alt="Cake cutting moment" />
+                </div>
+
+                <section class="scroll-letter" aria-label="Birthday letter">
+                  <p id="letter-text">
+                    Happy Happy Happiest birthday ra papa! 🎉🎉🎉🎉🎂✨
+
+                    Wishing you the kind of day that matches your energy loud, bright, and full of all the best things 🌟 
+                    May today be the happiest it's ever been, and may this whole year top every single one before it 🥳🥳🥳
+
+                    Celebrate big, laugh louder, and eat ALL the cake 🎊🍰❤️
+                  </p>
+                </section>
+
+                <div class="gift-cta">
+                  <button id="open-gift-overlay-btn" class="hidden">Collect your gift</button>
+                </div>
+              </div>
+            </div>
+
+            <section id="expression-section" class="section hidden">
+              <h2>For you</h2>
+              <p id="expression-text">
+                Sooo edhi cheyadam manam first time so emana tapu kani takuva kani chesi untey chepu next time nunchi inka baga chedham 😁😁
+
+                Inka potey nuvvu 2024,2025 lo sreyaaa laga maripovachu ga thanani chana miss aithana 🫠🫠
+
+                Okati gurthu unchukooo raa papa nee nunchi msg or call kani lekapothe it will be an incomplete day bcoz nuvvu ala alavatu aipoyav inkaaa
+
+                Lastly inka nee gift gurinchi antava adhi naa senior daggara undhi tisukoooo 😄😄
+
+                Once again, happy birthday ra, papa! 🎉
+              </p>
+              <div class="gift-cta">
+                <button id="expression-continue-btn">Continue</button>
+              </div>
+            </section>
+
+            <section id="final-question-section" class="section hidden">
+              <h1>Collect Gift From my Senior</h1>
+              <h2>Eroju naa papa appointment kudhiridhaaa 👉👈?</h2>
+              <div id="question-actions" class="question-actions">
+                <button id="yes-btn" class="yes">Yes</button>
+                <button id="no-btn" class="no">No</button>
+              </div>
+              <p id="no-feedback" class="feedback hidden"></p>
+            </section>
+
+            <section id="comment-section" class="section hidden">
+              <h2>Leave a comment before closing</h2>
+              <form id="comment-form">
+                <label for="comment-input">Say something before closing: Nuvvu em chepina naku notification vastadhi bol</label>
+                <textarea
+                  id="comment-input"
+                  name="comment"
+                  rows="4"
+                  required
+                  placeholder="Type your comment..."
+                ></textarea>
+                <button type="submit">Submit</button>
+              </form>
+            </section>
+
+            <section id="closing-section" class="section hidden center">
+              <h2>Enjoy the day buddy!!!</h2>
+              <button id="close-btn">Close</button>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="gift-overlay" class="hidden">
+      <section id="gift-section" class="overlay-card">
+        <h2>Grab your birthday gift below</h2>
+        <div id="gift-boxes" class="gift-boxes">
+          <button class="gift-box" data-gift="gift-1">🎁</button>
+          <button class="gift-box" data-gift="gift-2">🎁</button>
+          <button class="gift-box" data-gift="gift-3">🎁</button>
+        </div>
+        <p id="gift-result" class="feedback hidden">Appude ichestaruuu 😄😁.</p>
+        <p id="gift-note" class="feedback hidden">inkaaa undhi veluuu...</p>
+        <button id="gift-continue-btn" class="hidden">Continue</button>
+      </section>
+    </div>
+
+    <script src="collector-config.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
